@@ -1,0 +1,62 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+enum Priority {
+  HIGH @map("high")
+  MEDIUM @map("medium")
+  LOW @map("low")
+}
+
+enum Status {
+  COMPLETED @map("completed")
+  NEXT @map("next")
+}
+
+model Task {
+  id Int @id @default(autoincrement())
+  publicId String @unique @default(uuid())
+
+  title String @unique
+  description String
+  deadline DateTime
+  priority Priority @default(MEDIUM)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("tasks")
+}
+
+model Appointment {
+  id Int @id @default(autoincrement())
+  publicId String @unique @default(uuid())
+  
+  title String @unique
+  description String
+  date DateTime
+  local String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("appointments")
+}
+
+model Absence {
+  id Int @id @default(autoincrement())
+  publicId String @unique @default(uuid())
+
+  subject String
+  qntdAbsences Int @default(0) @map("qntd_absences")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("absences")
+}
