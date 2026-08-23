@@ -1,5 +1,8 @@
 import { app } from "./app.js";
 import { env } from "./env/index.js";
+import { routes } from "./http/controller/routes.js";
+
+app.register(routes)
 
 app.listen({
     host: env.HOST,

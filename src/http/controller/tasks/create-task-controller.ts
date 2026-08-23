@@ -1,6 +1,6 @@
 import type { FastifyRequest, FastifyReply } from "fastify"
 import z from "zod"
-import { ResourceNotFoundError } from "@/use-cases/errors/ResourceNotFoundError.js"
+import { ResourceNotFoundError } from "@/use-cases/errors/resource-not-found-error.js"
 import { makeCreateTaskUseCase } from "@/use-cases/factories/tasks/make-create-tasks-use-case.js"
 
 export async function createTask(request: FastifyRequest, reply: FastifyReply) {
@@ -8,7 +8,7 @@ export async function createTask(request: FastifyRequest, reply: FastifyReply) {
         const createTaskBodySchema = z.object({
             title: z.string().trim().min(1),
             description: z.string().trim().min(1).max(500),
-            deadline: z.date(),
+            deadline: z.coerce.date(),
             priority: z.enum(['HIGH', 'MEDIUM', 'LOW'])
         })
 
