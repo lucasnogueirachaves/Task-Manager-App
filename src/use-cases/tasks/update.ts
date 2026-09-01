@@ -4,10 +4,10 @@ import type { Priority, Task } from "@/generated/prisma/client.js";
 
 interface UpdateTaskUseCaseRequest {
     publicId: string
-    title: string,
-    description: string, 
-    deadline: Date, 
-    priority: Priority
+    title?: string,
+    description?: string, 
+    deadline?: Date, 
+    priority?: Priority
 }
 
 type UpdateTaskUseCaseResponse = {
@@ -25,10 +25,10 @@ export class UpdateTaskUseCase {
         }
 
         const updateData = {
-            title: title,
-            description: description, 
-            deadline: deadline, 
-            priority: priority
+            ...(title !== undefined ? { title } : {}),
+            ...(description !== undefined ? { description } : {}),
+            ...(deadline !== undefined ? { deadline } : {}),
+            ...(priority !== undefined ? { priority } : {})
         }
 
         const task = await this.tasksRepository.update(taskToUpdate.publicId, updateData)

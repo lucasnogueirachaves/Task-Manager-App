@@ -1,9 +1,9 @@
 import type { FastifyRequest, FastifyReply } from "fastify"
 import z from "zod"
 import { ResourceNotFoundError } from "@/use-cases/errors/resource-not-found-error.js"
-import { makeDeleteTaskUseCase } from "@/use-cases/factories/tasks/make-delete-task-use-case.js"
+import { makeDeleteAppointmentUseCase } from "@/use-cases/factories/appointments/make-delete-appointments-use-case.js"
 
-export async function deleteTask(request: FastifyRequest, reply: FastifyReply) {
+export async function deleteAppointment(request: FastifyRequest, reply: FastifyReply) {
     try {
         const updateParamsSchema = z.object({
             publicId: z.string().uuid()
@@ -11,11 +11,11 @@ export async function deleteTask(request: FastifyRequest, reply: FastifyReply) {
                 
         const { publicId } = updateParamsSchema.parse(request.params)
 
-        const deleteTaskUseCase = makeDeleteTaskUseCase()
+        const deleteAppointmentUseCase = makeDeleteAppointmentUseCase()
 
-        await deleteTaskUseCase.execute({publicId})
+        await deleteAppointmentUseCase.execute({publicId})
 
-        return reply.status(200).send({"message": "Tarefa apagada com sucesso!"})
+        return reply.status(200).send({"message": "Compromisso apagada com sucesso!"})
 
     } catch (error) {
         if (error instanceof ResourceNotFoundError) {
