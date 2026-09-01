@@ -6,7 +6,7 @@ interface UpdateAppointmentUseCaseRequest {
     publicId: string
     title?: string,
     description?: string, 
-    date: Date, 
+    date?: Date, 
     local?: string
 }
 

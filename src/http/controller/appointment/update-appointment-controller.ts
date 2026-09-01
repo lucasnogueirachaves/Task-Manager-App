@@ -12,9 +12,9 @@ export async function updateAppointment(request: FastifyRequest, reply: FastifyR
         const { publicId } = updateParamsSchema.parse(request.params)
 
         const updateAppointmentBodySchema = z.object({
-            title: z.string().trim().max(100).min(1),
-            description: z.string().trim().max(1000).min(1),
-            date: z.coerce.date(),
+            title: z.string().trim().max(100).min(1).optional(),
+            description: z.string().trim().max(1000).min(1).optional(),
+            date: z.coerce.date().optional(),
             local: z.string().optional()
         })
 
@@ -22,15 +22,15 @@ export async function updateAppointment(request: FastifyRequest, reply: FastifyR
 
         const updateAppointmentUseCase = makeUpdateAppointmentUseCase()
 
-        const appointmentData = {
+        const updateAppointmentData = {
             publicId,
-            title,
-            description,
-            date,
-            ...(local !== undefined ? { local } : {})
+            ...(title !== undefined && { title }),
+            ...(description !== undefined && { description }),
+            ...(date !== undefined && { date }),
+            ...(local !== undefined && { local })
         }
 
-        const { appointment } = await updateAppointmentUseCase.execute(appointmentData)
+        const { appointment } = await updateAppointmentUseCase.execute(updateAppointmentData)
 
         return reply.status(200).send(appointment)
 

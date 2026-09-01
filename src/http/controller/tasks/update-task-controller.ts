@@ -12,19 +12,22 @@ export async function updateTask(request: FastifyRequest, reply: FastifyReply) {
         const { publicId } = updateParamsSchema.parse(request.params)
 
         const updateTaskBodySchema = z.object({
-            title: z.string().trim().min(1),
-            description: z.string().trim().min(1).max(500),
-            deadline: z.coerce.date(),
-            priority: z.enum(['HIGH', 'MEDIUM', 'LOW'])
+            title: z.string().trim().min(1).optional(),
+            description: z.string().trim().min(1).max(500).optional(),
+            deadline: z.coerce.date().optional(),
+            priority: z.enum(['HIGH', 'MEDIUM', 'LOW']).optional()
         })
 
-        const {title, description ,deadline, priority} = updateTaskBodySchema.parse(request.body)
+        const { title, description, deadline, priority } = updateTaskBodySchema.parse(request.body)
 
         const updateTaskUseCase = makeUpdateTaskUseCase()
 
         const { task } = await updateTaskUseCase.execute({
             publicId,
-            title, description, deadline, priority
+            ...(title !== undefined && { title }),
+            ...(description !== undefined && { description }),
+            ...(deadline !== undefined && { deadline }),
+            ...(priority !== undefined && { priority }),
         })
 
         return reply.status(200).send(task)
