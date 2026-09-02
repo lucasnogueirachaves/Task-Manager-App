@@ -48,15 +48,15 @@ model Appointment {
   @@map("appointments")
 }
 
-model Absence {
+model SubjectAbsence {
   id Int @id @default(autoincrement())
   publicId String @unique @default(uuid())
 
-  subject String
-  qntdAbsences Int @default(0) @map("qntd_absences")
+  subject String @unique
+  absences Int @default(0) @map("absences")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@map("absences")
+  @@map("subjects_absences")
 }
