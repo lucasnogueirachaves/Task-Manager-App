@@ -1,5 +1,5 @@
 import type { TasksRepository } from "../tasks-repository.js";
-import { Prisma } from "@/generated/prisma/client.js";
+import type { Prisma } from "@/generated/prisma/client.js";
 import { prisma } from "@/lib/prisma.js";
 
 export class PrismaTaskRepository implements TasksRepository {

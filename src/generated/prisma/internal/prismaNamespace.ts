@@ -399,7 +399,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export const ModelName = {
   Task: 'Task',
   Appointment: 'Appointment',
-  Absence: 'Absence'
+  SubjectAbsence: 'SubjectAbsence'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -415,7 +415,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "task" | "appointment" | "absence"
+    modelProps: "task" | "appointment" | "subjectAbsence"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -567,77 +567,77 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    Absence: {
-      payload: Prisma.$AbsencePayload<ExtArgs>
-      fields: Prisma.AbsenceFieldRefs
+    SubjectAbsence: {
+      payload: Prisma.$SubjectAbsencePayload<ExtArgs>
+      fields: Prisma.SubjectAbsenceFieldRefs
       operations: {
         findUnique: {
-          args: Prisma.AbsenceFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AbsencePayload> | null
+          args: Prisma.SubjectAbsenceFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubjectAbsencePayload> | null
         }
         findUniqueOrThrow: {
-          args: Prisma.AbsenceFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AbsencePayload>
+          args: Prisma.SubjectAbsenceFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubjectAbsencePayload>
         }
         findFirst: {
-          args: Prisma.AbsenceFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AbsencePayload> | null
+          args: Prisma.SubjectAbsenceFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubjectAbsencePayload> | null
         }
         findFirstOrThrow: {
-          args: Prisma.AbsenceFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AbsencePayload>
+          args: Prisma.SubjectAbsenceFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubjectAbsencePayload>
         }
         findMany: {
-          args: Prisma.AbsenceFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AbsencePayload>[]
+          args: Prisma.SubjectAbsenceFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubjectAbsencePayload>[]
         }
         create: {
-          args: Prisma.AbsenceCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AbsencePayload>
+          args: Prisma.SubjectAbsenceCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubjectAbsencePayload>
         }
         createMany: {
-          args: Prisma.AbsenceCreateManyArgs<ExtArgs>
+          args: Prisma.SubjectAbsenceCreateManyArgs<ExtArgs>
           result: BatchPayload
         }
         createManyAndReturn: {
-          args: Prisma.AbsenceCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AbsencePayload>[]
+          args: Prisma.SubjectAbsenceCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubjectAbsencePayload>[]
         }
         delete: {
-          args: Prisma.AbsenceDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AbsencePayload>
+          args: Prisma.SubjectAbsenceDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubjectAbsencePayload>
         }
         update: {
-          args: Prisma.AbsenceUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AbsencePayload>
+          args: Prisma.SubjectAbsenceUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubjectAbsencePayload>
         }
         deleteMany: {
-          args: Prisma.AbsenceDeleteManyArgs<ExtArgs>
+          args: Prisma.SubjectAbsenceDeleteManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateMany: {
-          args: Prisma.AbsenceUpdateManyArgs<ExtArgs>
+          args: Prisma.SubjectAbsenceUpdateManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateManyAndReturn: {
-          args: Prisma.AbsenceUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AbsencePayload>[]
+          args: Prisma.SubjectAbsenceUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubjectAbsencePayload>[]
         }
         upsert: {
-          args: Prisma.AbsenceUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AbsencePayload>
+          args: Prisma.SubjectAbsenceUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubjectAbsencePayload>
         }
         aggregate: {
-          args: Prisma.AbsenceAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateAbsence>
+          args: Prisma.SubjectAbsenceAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSubjectAbsence>
         }
         groupBy: {
-          args: Prisma.AbsenceGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AbsenceGroupByOutputType>[]
+          args: Prisma.SubjectAbsenceGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SubjectAbsenceGroupByOutputType>[]
         }
         count: {
-          args: Prisma.AbsenceCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AbsenceCountAggregateOutputType> | number
+          args: Prisma.SubjectAbsenceCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SubjectAbsenceCountAggregateOutputType> | number
         }
       }
     }
@@ -705,16 +705,16 @@ export const AppointmentScalarFieldEnum = {
 export type AppointmentScalarFieldEnum = (typeof AppointmentScalarFieldEnum)[keyof typeof AppointmentScalarFieldEnum]
 
 
-export const AbsenceScalarFieldEnum = {
+export const SubjectAbsenceScalarFieldEnum = {
   id: 'id',
   publicId: 'publicId',
   subject: 'subject',
-  qntdAbsences: 'qntdAbsences',
+  absences: 'absences',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
-export type AbsenceScalarFieldEnum = (typeof AbsenceScalarFieldEnum)[keyof typeof AbsenceScalarFieldEnum]
+export type SubjectAbsenceScalarFieldEnum = (typeof SubjectAbsenceScalarFieldEnum)[keyof typeof SubjectAbsenceScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -926,7 +926,7 @@ export type PrismaClientOptions = PrismaClientOptionsWithAccelerateUrl | PrismaC
 export type GlobalOmitConfig = {
   task?: Prisma.TaskOmit
   appointment?: Prisma.AppointmentOmit
-  absence?: Prisma.AbsenceOmit
+  subjectAbsence?: Prisma.SubjectAbsenceOmit
 }
 
 /* Types for Logging */

@@ -25,7 +25,9 @@ model Task {
   title String @unique
   description String
   deadline DateTime
+
   priority Priority @default(MEDIUM)
+  status Status @default(NEXT)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -41,6 +43,8 @@ model Appointment {
   description String
   date DateTime
   local String?
+
+  status Status @default(NEXT)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

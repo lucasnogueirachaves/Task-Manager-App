@@ -7,10 +7,14 @@
   "scripts": {
     "start:dev": "tsx watch src/server.ts",
     "start:prod": "node build/server.js",
-    "build": "tsup"
+    "build": "tsup",
+    "lint": "biome check .",
+    "format": "biome format ‐‐write .",
+    "lint:fix": "biome check ‐‐apply ."
   },
   "keywords": [],
   "devDependencies": {
+    "@biomejs/biome": "2.5.15",
     "@types/better-sqlite3": "9.6.0",
     "@types/node": "26.2.0",
     "@types/pg": "8.23.1",

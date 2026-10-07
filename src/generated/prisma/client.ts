@@ -52,7 +52,7 @@ export type Task = Prisma.TaskModel
  */
 export type Appointment = Prisma.AppointmentModel
 /**
- * Model Absence
+ * Model SubjectAbsence
  * 
  */
-export type Absence = Prisma.AbsenceModel
+export type SubjectAbsence = Prisma.SubjectAbsenceModel

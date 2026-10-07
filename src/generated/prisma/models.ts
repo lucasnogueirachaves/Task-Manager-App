@@ -10,5 +10,5 @@
  */
 export type * from './models/Task.js'
 export type * from './models/Appointment.js'
-export type * from './models/Absence.js'
+export type * from './models/SubjectAbsence.js'
 export type * from './commonInputTypes.js'

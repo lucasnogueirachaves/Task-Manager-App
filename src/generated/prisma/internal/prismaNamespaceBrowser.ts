@@ -53,7 +53,7 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   Task: 'Task',
   Appointment: 'Appointment',
-  Absence: 'Absence'
+  SubjectAbsence: 'SubjectAbsence'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -97,16 +97,16 @@ export const AppointmentScalarFieldEnum = {
 export type AppointmentScalarFieldEnum = (typeof AppointmentScalarFieldEnum)[keyof typeof AppointmentScalarFieldEnum]
 
 
-export const AbsenceScalarFieldEnum = {
+export const SubjectAbsenceScalarFieldEnum = {
   id: 'id',
   publicId: 'publicId',
   subject: 'subject',
-  qntdAbsences: 'qntdAbsences',
+  absences: 'absences',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
-export type AbsenceScalarFieldEnum = (typeof AbsenceScalarFieldEnum)[keyof typeof AbsenceScalarFieldEnum]
+export type SubjectAbsenceScalarFieldEnum = (typeof SubjectAbsenceScalarFieldEnum)[keyof typeof SubjectAbsenceScalarFieldEnum]
 
 
 export const SortOrder = {
