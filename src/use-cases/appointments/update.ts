@@ -1,13 +1,14 @@
 import type { AppointmentsRepository } from "@/repositories/appointments-repository.js"
 import { ResourceNotFoundError } from "../errors/resource-not-found-error.js";
-import type { Appointment } from "@/generated/prisma/client.js";
+import type { Appointment, Status } from "@/generated/prisma/client.js";
 
 interface UpdateAppointmentUseCaseRequest {
     publicId: string
     title?: string,
     description?: string, 
     date?: Date, 
-    local?: string
+    local?: string,
+    status?: Status
 }
 
 type UpdateAppointmentUseCaseResponse = {
@@ -17,7 +18,7 @@ type UpdateAppointmentUseCaseResponse = {
 export class UpdateAppointmentUseCase {
     constructor(private appointmentsRepository: AppointmentsRepository) {}
 
-    async execute({ publicId, title, description, date, local }: UpdateAppointmentUseCaseRequest): Promise<UpdateAppointmentUseCaseResponse> {
+    async execute({ publicId, title, description, date, local, status }: UpdateAppointmentUseCaseRequest): Promise<UpdateAppointmentUseCaseResponse> {
         const appointmentToUpdate = await this.appointmentsRepository.readId(publicId)
 
         if (!appointmentToUpdate) {
@@ -28,7 +29,8 @@ export class UpdateAppointmentUseCase {
             ...(title !== undefined ? { title } : {}),
             ...(description !== undefined ? { description } : {}),
             ...(date !== undefined ? { date } : {}),
-            ...(local !== undefined ? { local } : {})
+            ...(local !== undefined ? { local } : {}),
+            ...(status !== undefined ? { status } : {})
         }
 
         const appointment = await this.appointmentsRepository.update(appointmentToUpdate.publicId, updateData)

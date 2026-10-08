@@ -8,9 +8,11 @@
     "start:dev": "tsx watch src/server.ts",
     "start:prod": "node build/server.js",
     "build": "tsup",
-    "lint": "biome check .",
-    "format": "biome format ‐‐write .",
-    "lint:fix": "biome check ‐‐apply ."
+    "web:dev": "npm --prefix web run dev",
+    "web:build": "npm --prefix web run build",
+    "lint": "biome lint .",
+    "format": "biome format --write .",
+    "check": "biome check --write ."
   },
   "keywords": [],
   "devDependencies": {

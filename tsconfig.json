@@ -43,5 +43,6 @@
     "paths": {
       "@/*": ["./src/*"]
     }
-  }
+  },
+  "exclude": ["web", "build", "node_modules"]
 }

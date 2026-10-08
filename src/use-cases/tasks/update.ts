@@ -1,13 +1,14 @@
 import type { TasksRepository } from "@/repositories/tasks-repository.js";
 import { ResourceNotFoundError } from "../errors/resource-not-found-error.js";
-import type { Priority, Task } from "@/generated/prisma/client.js";
+import type { Priority, Status, Task } from "@/generated/prisma/client.js";
 
 interface UpdateTaskUseCaseRequest {
     publicId: string
     title?: string,
     description?: string, 
     deadline?: Date, 
-    priority?: Priority
+    priority?: Priority,
+    status?: Status
 }
 
 type UpdateTaskUseCaseResponse = {
@@ -17,7 +18,7 @@ type UpdateTaskUseCaseResponse = {
 export class UpdateTaskUseCase {
     constructor(private tasksRepository: TasksRepository) {}
 
-    async execute({ publicId, title, description, deadline, priority }: UpdateTaskUseCaseRequest): Promise<UpdateTaskUseCaseResponse> {
+    async execute({ publicId, title, description, deadline, priority, status }: UpdateTaskUseCaseRequest): Promise<UpdateTaskUseCaseResponse> {
         const taskToUpdate = await this.tasksRepository.readId(publicId)
 
         if (!taskToUpdate) {
@@ -28,7 +29,8 @@ export class UpdateTaskUseCase {
             ...(title !== undefined ? { title } : {}),
             ...(description !== undefined ? { description } : {}),
             ...(deadline !== undefined ? { deadline } : {}),
-            ...(priority !== undefined ? { priority } : {})
+            ...(priority !== undefined ? { priority } : {}),
+            ...(status !== undefined ? { status } : {})
         }
 
         const task = await this.tasksRepository.update(taskToUpdate.publicId, updateData)

@@ -1,7 +1,7 @@
 import type { FastifyRequest, FastifyReply } from "fastify"
 import z from "zod"
-import { ResourceNotFoundError } from "@/use-cases/errors/resource-not-found-error.js"
-import { makeCreateSubjectUseCase } from "@/use-cases/factories/Subjects/make-create-Subjects-use-case.js"
+import { SubjectAlreadyExistsError } from "@/use-cases/errors/subject-already-exists-error.js"
+import { makeCreateSubjectUseCase } from "@/use-cases/factories/subjects/make-create-subject-use-case.js"
 
 export async function createSubject(request: FastifyRequest, reply: FastifyReply) {
     try {
@@ -20,8 +20,8 @@ export async function createSubject(request: FastifyRequest, reply: FastifyReply
         return reply.status(201).send(subject)
 
     } catch (error) {
-        if (error instanceof ResourceNotFoundError) {
-            return reply.status(404).send({
+        if (error instanceof SubjectAlreadyExistsError) {
+            return reply.status(409).send({
                 message: error.message
             })
         }

@@ -15,10 +15,11 @@ export async function updateAppointment(request: FastifyRequest, reply: FastifyR
             title: z.string().trim().max(100).min(1).optional(),
             description: z.string().trim().max(1000).min(1).optional(),
             date: z.coerce.date().optional(),
-            local: z.string().optional()
+            local: z.string().optional(),
+            status: z.enum(['COMPLETED', 'NEXT']).optional()
         })
 
-        const {title, description, date, local} = updateAppointmentBodySchema.parse(request.body)
+        const {title, description, date, local, status} = updateAppointmentBodySchema.parse(request.body)
 
         const updateAppointmentUseCase = makeUpdateAppointmentUseCase()
 
@@ -27,7 +28,8 @@ export async function updateAppointment(request: FastifyRequest, reply: FastifyR
             ...(title !== undefined && { title }),
             ...(description !== undefined && { description }),
             ...(date !== undefined && { date }),
-            ...(local !== undefined && { local })
+            ...(local !== undefined && { local }),
+            ...(status !== undefined && { status })
         }
 
         const { appointment } = await updateAppointmentUseCase.execute(updateAppointmentData)

@@ -15,10 +15,11 @@ export async function updateTask(request: FastifyRequest, reply: FastifyReply) {
             title: z.string().trim().min(1).optional(),
             description: z.string().trim().min(1).max(500).optional(),
             deadline: z.coerce.date().optional(),
-            priority: z.enum(['HIGH', 'MEDIUM', 'LOW']).optional()
+            priority: z.enum(['HIGH', 'MEDIUM', 'LOW']).optional(),
+            status: z.enum(['COMPLETED', 'NEXT']).optional()
         })
 
-        const { title, description, deadline, priority } = updateTaskBodySchema.parse(request.body)
+        const { title, description, deadline, priority, status } = updateTaskBodySchema.parse(request.body)
 
         const updateTaskUseCase = makeUpdateTaskUseCase()
 
@@ -28,6 +29,7 @@ export async function updateTask(request: FastifyRequest, reply: FastifyReply) {
             ...(description !== undefined && { description }),
             ...(deadline !== undefined && { deadline }),
             ...(priority !== undefined && { priority }),
+            ...(status !== undefined && { status }),
         })
 
         return reply.status(200).send(task)
